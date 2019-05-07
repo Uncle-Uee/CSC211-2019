@@ -14,13 +14,21 @@ package Utilities;/*
 import java.io.*;
 import java.util.*;
 
-public abstract class FileIO {
+public class FileIO {
 
-    /**
-     * Default Constructor
-     */
-    public FileIO() {
+    private static FileReader fileReader = null;
+    private static BufferedReader bufferedReader = null;
+
+    private static ArrayList lines = null;
+
+    public enum TYPE {
+        STRING,
+        CHAR,
+        INT,
+        FLOAT,
+        DOUBLE
     }
+
 
     /**
      * Read a File Line-by-Line and Store each Line into an ArrayList and Return the ArrayList of Data.
@@ -52,6 +60,102 @@ public abstract class FileIO {
 
         return null;
     }
+
+    public static ArrayList<Integer> ReadIntegers(String filePath) {
+
+        try {
+
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            ArrayList<Integer> lines = new ArrayList<>();
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+                lines.add(Integer.parseInt(line));
+            }
+
+            bufferedReader.close();
+
+            return lines;
+
+        } catch (IOError | IOException e) {
+            System.out.println(e.toString());
+        }
+
+        return null;
+    }
+
+    /**
+     * @param filePath
+     * @param cleanString
+     * @param type
+     * @return
+     */
+    public static ArrayList ReadLines(String filePath, boolean cleanString, TYPE type) {
+        try {
+
+            fileReader = new FileReader(filePath);
+            bufferedReader = new BufferedReader(fileReader);
+
+            switch (type) {
+                case STRING:
+                    lines = new ArrayList<String>();
+                    break;
+                case CHAR:
+                    lines = new ArrayList<Character>();
+                    break;
+                case INT:
+                    lines = new ArrayList<Integer>();
+                    break;
+                case FLOAT:
+                    lines = new ArrayList<Float>();
+                    break;
+                case DOUBLE:
+                    lines = new ArrayList<Double>();
+                    break;
+                default:
+//                    lines = new ArrayList<T>();
+                    break;
+            }
+
+            String line;
+
+            while ((line = bufferedReader.readLine()) != null) {
+
+                if (cleanString)
+                    line = line.replaceAll("[^\\p{Alpha} ]", "").toLowerCase();
+
+                switch (type) {
+                    case STRING:
+                        lines.add(line);
+                        break;
+                    case CHAR:
+                        lines.add(line.charAt(0));
+                        break;
+                    case INT:
+                        lines.add(Integer.parseInt(line));
+                        break;
+                    case FLOAT:
+                        lines.add(Float.parseFloat(line));
+                        break;
+                    case DOUBLE:
+                        lines.add(Double.parseDouble(line));
+                        break;
+                    default:
+//                        lines.add((T) line);
+                        break;
+                }
+            }
+            bufferedReader.close();
+            return lines;
+
+        } catch (IOError | IOException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+
 
     /**
      * Write Data from an ArrayList to a Specific File.

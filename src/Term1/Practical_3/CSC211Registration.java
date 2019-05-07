@@ -13,6 +13,9 @@
 
 package Term1.Practical_3;
 
+import DataStructures.LinkedList.LinkedList;
+import DataStructures.Node.Node;
+
 public class CSC211Registration extends LinkedList<Student> {
 
     /* ---------- ---------- ---------- CONSTRUCTORS ---------- ---------- ----------  */

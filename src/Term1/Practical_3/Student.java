@@ -13,6 +13,14 @@ public class Student {
     public Student() {
     }
 
+    /**
+     * Create a new Student with a Name, Surname, Age, Student# and Score.
+     * @param name
+     * @param surname
+     * @param age
+     * @param studentNo
+     * @param score
+     */
     public Student(String name, String surname, int age, long studentNo, double score) {
         this.name = name;
         this.surname = surname;
