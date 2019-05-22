@@ -76,22 +76,4 @@ public class Queue<T> extends LinkedList<T> {
     public ArrayList<T> ToList() {
         return super.ToList();
     }
-
-    public static void main(String[] args) {
-        Queue<Integer> Queue = new Queue<Integer>();
-
-        Queue.Enqueue(0);
-        Queue.Enqueue(1);
-        Queue.Enqueue(2);
-        Queue.Enqueue(3);
-        Queue.Enqueue(4);
-
-        System.out.println(Queue.Size());
-
-        Queue.Display();
-
-        System.out.println(Queue.Dequeue().toString());
-
-        Queue.Display();
-    }
 }

@@ -12,14 +12,18 @@ public class PriorityQueue<T> {
     private int _priority = -1;
 
     /**
-     * Stack of Items with the Same Priority.
+     * Queue of Items with the Same Priority.
      */
-    private Queue<T> _queue;
+    private Queue<T> _queue = new Queue<>();
 
     /* ---------- ---------- ---------- CONSTRUCTORS ---------- ---------- ----------  */
 
     public PriorityQueue() {
-        this._queue = new Queue<T>();
+    }
+
+    public PriorityQueue(int priority, T item) {
+        this._priority = priority;
+        this._queue.Enqueue(item);
     }
 
     /* ---------- ---------- ---------- GETTERS AND SETTERS ---------- ---------- ----------  */

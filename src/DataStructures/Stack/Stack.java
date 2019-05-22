@@ -51,22 +51,4 @@ public class Stack<T> extends LinkedList<T> {
     public ArrayList<T> ToList() {
         return super.ToList();
     }
-
-    public static void main(String[] args) {
-        Stack<Integer> Stack = new Stack<Integer>();
-
-        Stack.Push(0);
-        Stack.Push(1);
-        Stack.Push(2);
-        Stack.Push(3);
-        Stack.Push(4);
-
-        System.out.println(Stack.Size());
-
-        Stack.Display();
-        System.out.println(Stack.Pop().toString());
-
-        Stack.Display();
-    }
-
 }
